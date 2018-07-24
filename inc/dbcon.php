@@ -1,8 +1,15 @@
 <?php
+// declare the connection variable
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "pgm";
 
-echo"this is the database connection file"
-// write the logic to connect the databse file
-
-
-
+// create connection
+$con = mysqli_connect($servername,$username,$password,$dbname);
+if($con){
+    // echo"Database connected successfully";
+}else{
+    die("connection failed :" .mysqli_connect_error());
+}
 ?>

@@ -1,3 +1,7 @@
+<?php
+// include the databse connection
+require_once('./inc/dbcon.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -120,34 +124,34 @@
           <img src="img/brand_image.png" alt="Logo">
         </div>
         <div class="modal-body">
-            <form action="">
+            <form action="signup.php" method="post">
               <div class="form-group">
                 <label for="fullName">Full Name:</label>
-                <input type="text" name="fullName" id="fullName" class="form-control">
+                <input type="text" name="fullName" id="fullName" class="form-control" required maxlength="50" >
               </div>
               <div class="form-group">
                 <label for="empId">Employee ID:</label>
-                <input type="text" name="empId" id="empId" class="form-control">
+                <input type="text" name="empId" id="empId" class="form-control" required maxlength="7">
               </div>
               <div class="form-group">
                 <label for="designation">Designation:</label>
-                <input type="text" name="designation" id="designation" class="form-control">
+                <input type="text" name="designation" id="designation" class="form-control" required maxlength="50">
               </div>
               <div class="form-group">
                 <label for="contactNo">Contact No:</label>
-                <input type="text" name="contactNo" id="contactNo" class="form-control">
+                <input type="text" name="contactNo" id="contactNo" class="form-control" required maxlength="10" pattern="[7|8|9][0-9]{9}">
               </div>
               <div class="form-group">
                 <label for="emailId">Email Address :</label>
-                <input type="email" name="emailId" id="emailId" class="form-control">
+                <input type="email" name="emailId" id="emailId" class="form-control" required maxlength="50">
               </div>
             <div class="form-group">
               <label for="chooserPassword">Password :</label>
-              <input type="password" name="password" id="password" class="form-control">
+              <input type="password" name="password" id="password" class="form-control" required maxlength="20">
             </div>
             <div class="form-group">
               <label for="confirmPassword">Confirm Password:</label>
-              <input type="password" name="confirmPassword" id="confirmPassword" class="form-control">
+              <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" required maxlength="20">
             </div>
             <div class="btn_panel">
               <input type="submit" name="btn_signup" id="btn_signup" value="Save" class="btn btn-success">
