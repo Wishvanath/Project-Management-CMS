@@ -1,0 +1,430 @@
+body{
+	 line-height: 1.5;
+	 font-family: 'Merriweather', serif;
+	 min-width: 100%;
+	 overflow-x: hidden;
+	 position: relative; 
+     /* font-size: 15px; */
+     letter-spacing: -.01em;
+     background-color:#173b69;
+     color: #ffffff;
+ 
+}
+
+/* navbar section */
+.navbar-default{
+    padding: 10px;
+    background-color:#173b69;
+    border-color: #3d5d66;
+    
+}
+.navbar-default .navbar-brand {
+    font-size: 20px;
+    letter-spacing: 2px;
+    color:white;
+    
+}
+.navbar-default .navbar-brand:hover {
+    color: white;
+    opacity: 0.7;
+}
+/* body text section */
+.body_text  {
+    padding: 30px;
+    text-align: center;
+    font-family: 'Merriweather', serif;
+    font-size: 40px;
+    line-height: 50px;
+    margin-top: 35px;
+}
+.body_descp {
+    font-family: 'Tangerine', serif;
+    font-size: 40px;
+    
+}
+
+.btn_log{
+    font-family: 'Merriweather', serif;
+    font-size: 17px;
+}
+
+
+/* login model section */
+#myLoginModel{
+    margin-top: 100px;
+    color:#003985;
+    
+}
+.loginmodel{
+    width:400px;
+    padding: 30px;
+}
+.signupmodel{
+    width: 500px;
+    padding: 20px;
+}
+#myLoginModel .modal-header img{
+    width: 150px;
+}
+
+#myLoginModel .modal-header{
+    text-align: center;
+}
+
+/* signup model section */
+#mySignupModel{
+    color:#003985;
+    
+}
+#mySignupModel .modal-header img{
+    width: 150px;
+}
+#mySignupModel .modal-header{
+    text-align: center;
+}
+#btn_signup{
+    width:150px;
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+.btn_panel{
+    text-align: center;
+    margin-bottom: 10px;
+}
+.user_name{
+    color: white;
+}
+
+.task_body{
+    margin-top: -10px;
+    background-color:#ececec;
+    border-radius: 5px;
+    color: black;
+    padding: 20px;
+    box-shadow: 2px 2px 2px 2px black;
+}
+
+.sel_project{
+    width: 305px;
+    height: 36px;
+}
+
+.first_row{
+    padding: 20px;
+    margin-top: 20px;
+}
+.cald_pick{
+    text-align: center;
+    background: #0c8aab;
+    padding: 7px;
+    height: 50px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    max-width: 42%;
+    margin-left: 35px;
+}
+.sel_cal{
+    width:300px;
+    height:36px;
+    border: none;
+    border-radius: 3px;
+}
+.body_row{
+    border-bottom: 1px solid #b6b0b0;
+}
+.nec_scroll{
+    /* max-height: 500px; */
+    overflow-y: scroll;
+    overflow-x: scroll;
+    /* height: 300px; */
+    background-color:#fcfcfc;
+    border:1px solid #b6b0b0;
+    padding: 4px;
+    border-radius: 3px;
+}
+
+.text_header{
+    color:#0c8aab;
+    text-transform: uppercase;
+}
+.date_show{
+    text-align: center;
+}
+.task_date{
+    width:355px;
+    height:40px;
+    margin-bottom: 5px;
+}
+.btn_task{
+    height: 36px;
+}
+.fourth_row,
+.fifth_row,
+.third_row{
+    padding: 20px;
+}
+.planned_task{
+    color:#de8c18;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+#btni_edit{
+    color:#337ab7;
+    font-size: 17px;
+}
+#btni_success{
+    color:#34aa34;
+    font-size: 17px;
+}
+#btni_delete{
+    color:#b90707;
+    font-size: 17px;
+}
+#btni_comment{
+    color:#de8c18;
+    font-size: 17px;
+}
+.actual_task{
+    color:#0e990e;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.next_week_task{
+    color:#0c8aab;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+/* .newTask,
+.testcontainer{
+    margin-top: 10px;
+    background-color: white;
+    border: 1px solid #0c8aab;
+    border-radius: 5px;
+    padding: 10px;
+}  */
+.addactTaskLabel{
+    color:#0e990e;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 300;
+}
+.nextWeekPlane{
+    color:#0c8aab;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 300;
+}
+.btnaddact{
+    margin-top:-20px;
+}
+.btnaddactclose{
+    border:none;
+    background: transparent;
+    color:#8f8787;
+    font-size: 23px;
+    margin-left: 10px;
+}
+.btn_new_task{
+    background-color: #0c8aab;
+    color: white;
+    border: none;
+    width: 50px;
+    height: 33px;
+    border-radius: 3px;
+}
+.btn_new_task:hover{
+    background-color: #056881;
+    cursor: pointer;
+}
+.btnNewTask{
+    background-color: #0c8aab;
+    color: white;
+    border: none;
+    width: 50px;
+    height: 33px;
+    border-radius: 3px;
+    margin-top: -50px;
+}
+.btnNewTask:hover{
+    background-color: #056881;
+    cursor: pointer;
+}
+.newModule,
+.newProject{
+    margin-top: 10px;
+    background-color: white;
+    border: 1px solid #0c8aab;
+    border-radius: 5px;
+    padding: 5px;
+    width: 490px;
+    /* border-style:dashed; */
+}
+.txt_model{
+    width:380px;
+    border:none;
+    
+}
+
+#myCommentModel{
+    color:black;
+    margin-top: 50px;
+    padding: 20px;
+}
+#myCommentModel .btn_com{
+    margin-left: 490px;
+}
+.btnAddProject{
+    border: none;
+    background:transparent;
+    color:#0c8aab;
+    font-size: 20px;
+    margin-left: 20px;
+    font-weight: bold;
+}
+.btnAddPclose{
+    border:none;
+    background: transparent;
+    color:#b90707;
+    font-size: 20px;
+}
+.projectStatus{
+    text-align: center;
+    background: #0c8aab;
+    padding: 7px;
+    height: 50px;
+    border-radius: 5px;
+    letter-spacing: 2px;
+    max-width: 26%;
+    color:black;
+    /* width: 300px; */
+    margin-left: 15px;
+}
+#dropdownMenu1{
+    border: none;
+    height: 36px;
+    text-transform: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*========================================================================*/
+
+/*for media query*/
+
+/* for extra small device */
+@media(max-width: 767px){
+  body{
+      background-color: red;
+  }
+  .newModule, 
+  .newProject {
+     margin-bottom:10px;
+  } 
+  .cald_pick{
+    margin-left: 35px;
+    max-width: 67%;
+  }
+  .sel_cal{
+    max-width: 40%;
+  }
+  .projectStatus{
+    max-width: 67%;
+    margin-left: 35px;
+    margin-top: 10px;
+  }
+  .loginmodel{
+    width:450px;
+    padding: 30px;
+  }
+  .signupmodel{
+    width: 450px;
+    padding: 30px;
+  }
+
+
+
+}
+/* end of extra small device */
+  
+  
+  
+/* for small device*/
+@media (min-width: 768px) and (max-width: 991px){
+    body{
+        background-color: yellow;
+    }
+    .txt_model {
+        width: 190px;
+        border: none;
+    }
+    .newModule, 
+    .newProject {
+        width: 305px;
+        
+    }
+    .cald_pick{
+        margin-left: 35px;
+        max-width: 40%;
+    }
+    .sel_cal{
+        max-width: 40%;
+    }
+}
+  
+/* for large device */
+@media (min-width: 1200px){
+    /* body{
+        background-color:white;
+    } */
+}
+
+@media (min-width: 992px) and (max-width: 1280px) {
+    body{
+        background-color: #0c8aab;
+    }
+    .newModule, 
+    .newProject {
+        width: 358px;
+        
+    }
+    .txt_model {
+        width: 250px;
+        border: none;
+    }
+    .cald_pick{
+        margin-left: 35px;
+        max-width: 37%;
+    }
+    .sel_cal{
+        max-width: 50%;
+    }
+    .projectStatus{
+        max-width: 30%;
+    }
+}
