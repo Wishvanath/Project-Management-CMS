@@ -1,20 +1,6 @@
-<!-- start session and cookie tag -->
 <?php
-    // session start
-    session_start();
-    if(isset($_SESSION['email_address'])){
-        // store in any variable
-        $session_id = $_SESSION['email_address'];
-        // echo"You have logged in with session";
-        // echo"$session_id";
-    }elseif(isset($_COOKIE['email_address'])){
-        $session_id = $_COOKIE['email_address'];
-        // echo"You have logged in with cookie";
-        // echo"$session_id";
-    }else{
-        echo"Some Error";
-        header("Location: index.php");
-    }
+// include the session file 
+require_once('./inc/session.php');   
 ?>
 <!-- end of session and cookie tag -->
 
@@ -299,9 +285,9 @@
                     
                 </div>
                 <div class="newTask col-md-6 col-sm-8 col-lg-6 col-xs-12" id="newTask" style="display:none">
-                    <form action="">
-                        <textarea name="userNewTask" id="userNewTask" cols="30" rows="3" class="form-control" placeholder="Add new Item"></textarea><br>
-                        <button class="btnNewTask">Add</button>
+                    <form name="newTask" id="newTask" action="newtask.php" method="post">
+                        <textarea name="userNewTask" id="userNewTask" cols="10" rows="3" class="form-control" placeholder="Add new Item"></textarea><br>
+                        <button class="btnNewTask" name="btn_new_task" id="btn_new_task">Add</button>
                         <button class="btnaddactclose" onclick="hideNewTask();" ><i class="fa fa-close"></i></button>
                         
                     </form>
