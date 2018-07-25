@@ -157,6 +157,7 @@ require_once('./inc/dbcon.php');
               <input type="submit" name="btn_signup" id="btn_signup" value="Save" class="btn btn-success">
             </div>
             </form>
+            
         </div>
         <!-- <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
