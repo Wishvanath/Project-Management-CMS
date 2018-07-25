@@ -5,7 +5,7 @@ if(isset($_POST['btn_signup'])){
     
     // grab the form data
     $fullName = mysqli_real_escape_string($con, trim($_POST['fullName']));
-    $empId = mysqli_real_escape_string($con, trim($_POST['empId']));
+    $empId = mysqli_real_escape_string($con, strtoupper(trim($_POST['empId'])));
     $designation = mysqli_real_escape_string($con, trim($_POST['designation']));
     $contactNo = mysqli_real_escape_string($con, trim($_POST['contactNo']));
     $emailId = mysqli_real_escape_string($con, trim($_POST['emailId']));

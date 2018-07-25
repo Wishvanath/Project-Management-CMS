@@ -94,20 +94,20 @@ require_once('./inc/dbcon.php');
           <img src="img/brand_image.png" alt="Logo">
         </div>
         <div class="modal-body">
-          <form>
+          <form name ="loginForm" action="login.php" method="post">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-              <input id="email" type="text" class="form-control" name="email" placeholder="Email">
+              <input id="text" type="text" class="form-control" name="empId" id="empId" placeholder="Employee ID">
             </div><br>
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-              <input id="password" type="password" class="form-control" name="password" placeholder="Password">
+              <input type="password" class="form-control" name="empPassword" id="empPassword" placeholder="Password">
             </div>
             <div class="checkbox">
-              <label><input type="checkbox"> Remember me</label>
+              <label><input type="checkbox" name="re" id="re"> Remember me</label>
             </div><br>
             <div class="btn_panel">
-              <button class="btn btn-primary btn-block">Submit</button>
+              <button class="btn btn-primary btn-block" name="btn_login" id="btn_login">Submit</button>
             </div>
           </form> 
         </div>
@@ -159,9 +159,7 @@ require_once('./inc/dbcon.php');
             </form>
             
         </div>
-        <!-- <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div> -->
+        
       </div>
     </div>
   </div>
