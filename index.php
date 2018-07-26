@@ -135,8 +135,8 @@ require_once('./inc/dbcon.php');
                 <input type="text" name="fullName" id="fullName" class="form-control" required maxlength="50" >
               </div>
               <div class="form-group">
-                <label for="empId"><h5>Employee ID: *</h5></label>
-                <input type="text" name="empId" id="empId" class="form-control" required maxlength="7">
+                <label for="empId"><h5>Employee ID: </h5></label>
+                <input type="text" name="empId" id="empId" class="form-control" maxlength="7">
               </div>
               <div class="form-group">
                 <label for="designation"><h5>Designation: *</h5></label>

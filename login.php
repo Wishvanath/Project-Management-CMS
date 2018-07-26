@@ -8,10 +8,7 @@ if(isset($_POST['btn_login'])){
     // grab the form data
     $user_id = mysqli_real_escape_string($con,strtoupper(trim($_POST['empId'])));
     $user_password = mysqli_real_escape_string($con, md5(trim($_POST['empPassword'])));
-    // echo"$user_id";
-    // echo"<br/>";
-    // echo"$user_password";
-
+    
     // to check rember options
     if(isset($_POST['re'])){
         $re = "checked";

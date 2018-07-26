@@ -15,25 +15,22 @@ if(isset($_POST['btn_signup'])){
     // check field is valid or not
     if ($password !== $confirmPassword) {
         echo '<script language="javascript">';
-        echo 'alert("Pass
-
-        Lets you work more collaboratively and get more done.
-        
-        This Dashboards, lists, and cards enable you to orword didnot matched");';
+        echo 'alert("Password didnot matched");';
         echo 'window.location.href = "index.php";';
         echo '</script>';
         exit();
+       
     }else{
         // find the existing employee id
-        $findempid = "SELECT `emp_id` FROM `pgm_user` WHERE `emp_id` = '$empId'";
-        $empidrun = mysqli_query($con, $findempid) or die("Database Error");
-        if(mysqli_num_rows($empidrun) > 0){
-            echo '<script language="javascript">';
-            echo 'alert("Employee Id is already exist");';
-            echo 'window.location.href = "index.php";';
-            echo '</script>';
-            exit();
-        }
+        // $findempid = "SELECT `emp_id` FROM `pgm_user` WHERE `emp_id` = '$empId'";
+        // $empidrun = mysqli_query($con, $findempid) or die("Database Error");
+        // if(mysqli_num_rows($empidrun) > 0){
+        //     echo '<script language="javascript">';
+        //     echo 'alert("Employee Id is already exist");';
+        //     echo 'window.location.href = "index.php";';
+        //     echo '</script>';
+        //     exit();
+        // }
 
         // find the existing email id
         $findemail = "SELECT `email_address` FROM `pgm_user` WHERE `email_address` = '$emailId'";
