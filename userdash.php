@@ -1,6 +1,6 @@
 <?php
 // include the session file 
-require_once('./inc/session.php');   
+require_once('./inc/session.php');
 ?>
 <!-- end of session and cookie tag -->
 

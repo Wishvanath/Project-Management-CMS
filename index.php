@@ -97,19 +97,24 @@ require_once('./inc/dbcon.php');
           <form name ="loginForm" action="login.php" method="post">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-              <input id="text" type="text" class="form-control" name="empId" id="empId" placeholder="Employee ID">
+              <input id="text" type="email" class="form-control" name="empId" id="empId" placeholder="Email ID.." required maxlength="50">
             </div><br>
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-              <input type="password" class="form-control" name="empPassword" id="empPassword" placeholder="Password">
+              <input type="password" class="form-control" name="empPassword" id="empPassword" placeholder="Password.." required maxlength="20">
             </div>
             <div class="checkbox">
               <label><input type="checkbox" name="re" id="re"> Remember me</label>
-            </div><br>
+            </div>
             <div class="btn_panel">
               <button class="btn btn-primary btn-block" name="btn_login" id="btn_login">Submit</button>
             </div>
           </form> 
+          <div class="form-group">
+              <a href="forgetpass.php">
+              <label for="forgetPassword"><h5 class="forgetPassword"><u>Forget Password</u></h5></label>
+              </a>
+            </div>
         </div>
       </div>  
     </div>
@@ -126,31 +131,31 @@ require_once('./inc/dbcon.php');
         <div class="modal-body">
             <form action="signup.php" method="post">
               <div class="form-group">
-                <label for="fullName">Full Name:</label>
+                <label for="fullName"><h5>Full Name: *</h5></label>
                 <input type="text" name="fullName" id="fullName" class="form-control" required maxlength="50" >
               </div>
               <div class="form-group">
-                <label for="empId">Employee ID:</label>
+                <label for="empId"><h5>Employee ID: *</h5></label>
                 <input type="text" name="empId" id="empId" class="form-control" required maxlength="7">
               </div>
               <div class="form-group">
-                <label for="designation">Designation:</label>
+                <label for="designation"><h5>Designation: *</h5></label>
                 <input type="text" name="designation" id="designation" class="form-control" required maxlength="50">
               </div>
               <div class="form-group">
-                <label for="contactNo">Contact No:</label>
+                <label for="contactNo"><h5>Contact No: *</h5></label>
                 <input type="text" name="contactNo" id="contactNo" class="form-control" required maxlength="10" pattern="[7|8|9][0-9]{9}">
               </div>
               <div class="form-group">
-                <label for="emailId">Email Address :</label>
+                <label for="emailId"><h5>Email Address: *</h5></label>
                 <input type="email" name="emailId" id="emailId" class="form-control" required maxlength="50">
               </div>
             <div class="form-group">
-              <label for="chooserPassword">Password :</label>
+              <label for="chooserPassword"><h5>Password: *</h5></label>
               <input type="password" name="password" id="password" class="form-control" required maxlength="20">
             </div>
             <div class="form-group">
-              <label for="confirmPassword">Confirm Password:</label>
+              <label for="confirmPassword"><h5>Confirm Password: *</h5></label>
               <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" required maxlength="20">
             </div>
             <div class="btn_panel">

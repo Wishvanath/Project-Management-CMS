@@ -307,13 +307,57 @@ body{
     height: 36px;
     text-transform: none;
 }
-
-
-
-
-
-
-
+.forgetPassword:hover{
+    cursor: pointer;
+}
+.forgetbody{
+    padding: 15px;
+    text-align: center;
+    font-family: 'Merriweather', serif;
+    font-size: 25px;
+    line-height: 45px;
+    margin-top: 0px;   
+}
+.company_text{
+    font-weight: bold;
+    font-family: 'Merriweather', serif;
+    font-size: 30px;
+}
+.form_body{
+    border: 1px solid #3d5d66;
+    border-radius: 5px;
+    padding: 30px;
+    text-align: left;
+    letter-spacing: 2px;
+    
+}
+.imagerow{
+    background-image: url("../img/keyimage.png");
+    background-repeat: no-repeat;
+    background-position: fixed;
+    
+}
+.txtforget{
+    background:transparent;
+    display:block;
+    border:1px solid #3d5d66;
+    margin-left: 10px;
+    color:white;
+    border-radius:50px;
+    
+}
+.txtforget:focus{
+    border:1px solid #3d5d66;
+    outline: none;
+}
+.btnRset{
+    margin-top: 10px;
+    width: 200px;
+    background:transparent;
+    border:1px solid #3d5d66;
+    height: 40px;
+    float: right;
+}
 
 
 

@@ -20,7 +20,7 @@ if(isset($_POST['btn_login'])){
         $re = "unchecked";
     }
     // check username and password 
-    $query ="SELECT * FROM `pgm_user` WHERE `emp_id` = '$user_id' and `password` = '$user_password'";
+    $query ="SELECT * FROM `pgm_user` WHERE `email_address` = '$user_id' and `password` = '$user_password'";
     $run = mysqli_query($con, $query) or die("Database Error".mysqli_error($con));
     if(mysqli_num_rows($run) > 0){
         //grab the useremail to store the session

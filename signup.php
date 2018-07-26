@@ -15,7 +15,11 @@ if(isset($_POST['btn_signup'])){
     // check field is valid or not
     if ($password !== $confirmPassword) {
         echo '<script language="javascript">';
-        echo 'alert("Password didnot matched");';
+        echo 'alert("Pass
+
+        Lets you work more collaboratively and get more done.
+        
+        This Dashboards, lists, and cards enable you to orword didnot matched");';
         echo 'window.location.href = "index.php";';
         echo '</script>';
         exit();
