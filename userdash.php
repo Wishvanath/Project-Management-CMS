@@ -1,6 +1,8 @@
 <?php
 // include the session file 
 require_once('./inc/session.php');
+require_once('./inc/dbcon.php');
+
 ?>
 <!-- end of session and cookie tag -->
 
@@ -65,81 +67,176 @@ require_once('./inc/session.php');
 
     <!-- page taskbody-section -->
     <div class="container task_body">
-        <div class="row first_row">
-            <div class="col-md-6 col-sm-6 col-lg-6">
-                <div class="form-group">
-                    <label for="projectName" class="text_header">Project Name :</label>
-                    <select name="projectName" id="projectName" class="sel_project">
-                        <option value="">Select Project</option>
-                        <option value="project1">Project1</option>
-                        <option value="project1">Project1</option>
-                    </select>
-                    <button class="btn_new_task" onclick="addnewProject();"><i class="fa fa-plus"></i></button>
+        <div class="row task_row">
+            <div class="taskstatus">
+                <div class="col-sm-4 projectStatus">
+                    <div class="dropdown">
+                        <label for="project-status" class="hidden-sm">TASK STATUS</label>
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Download
+                        <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+                        <li><a href="#">Export into Excel</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Export into Pdf</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="newProject" id="newProject" style="display: none">
-                    <input type="text"class="txt_model" placeholder="New Project Name..">
-                    <button class="btnAddProject"><i class="fa  fa-check"></i></button>
-                    <button class ="btnAddPclose" onclick="newProjectHide();" ><i class="fa fa-close"></i></button>
-                </div>
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4"></div>
             </div>
-            <div class="col-md-6 col-sm-6 col-lg-6">
-                <div class="form-group">
-                    <label for="projectModule" class="text_header">Module Name :</label>
-                    <select name="moduleName" id="moduleName" class="sel_project">
-                        <option value="">Select Module</option>
-                        <option value="module1">Module1</option>
-                        <option value="module2">Module2</option>
-                    </select>
-                    <button class="btn_new_task" onclick="addnewModule();"><i class="fa fa-plus"></i></button>
-                </div>
-                <div class="newModule" id="newModule"style="display:none" >
-                    <input type="text"class="txt_model" placeholder="New Module Name..">
-                    <button class="btnAddProject"><i class="fa fa-check"></i></button>
-                    <button class="btnAddPclose" onclick="newModuleHide();"><i class="fa fa-close"></i></button>
-                </div>
-            </div> 
-
-        </div> <!-- end of first-row-->
-        <div class="row second_row">
-            <div class="col-sm-6 col-md-6 col-lg-6 cald_pick">
-                <div class="form-group">
-                    <label for="calender" class="hidden-xs">Date :</label>
-                    <input type="date" name="user_cal" id="user_cal" class="sel_cal" placeholder="Select Date">
-                    <input type="submit" name="btn_date_submit" value="Select" class="btn btn-warning btn_task">
-
-                </div>
-            </div>
-            <div class="col-sm-2 col-md-2 col-lg-2" style="text-align: center">
-                    <!-- <i class="fa fa-eye fa-2x"></i> -->
-            </div>
-            <div class="col-sm-4 col-md-4 col-lg-4 projectStatus">
-                <div class="dropdown">
-                    <label for="project-status" class="hidden-sm">TASK STATUS</label>
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                      Download
-                      <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
-                      <li><a href="#">Export into Excel</a></li>
-                      <li role="separator" class="divider"></li>
-                      <li><a href="#">Export into Pdf</a></li>
-                    </ul>
-                  </div>
-            </div>
-        </div> <!-- end of second row-->
+        </div>
         <hr class="body_row">
+        <form action="newtask.php" method="post">
+            <!-- project name and project module section -->
+            <div class="row first_row">
+                <div class="col-md-6 col-sm-6 col-lg-6">
+                    
+                    <div class="form-group">
+                        <label for="projectName" class="text_header">Project Name :</label>
+                        <select name="projectName" id="projectName" class="sel_project">
+                            <?php
+                            // get project name from the database
+                            $proquery = "SELECT * FROM `pgm_project` ORDER BY `pgm_project`.`st_date` DESC
+                            ";
+                            $prorun = mysqli_query($con, $proquery) or die("Database Error". mysqli_error($con));
+                            // check data is found or not 
+                            if(mysqli_num_rows($prorun) > 0){
+                                while($data = mysqli_fetch_assoc($prorun)){ ?>    
+                            <option value="<?php echo $data['project_name'] ?>"><?php echo $data['project_name'] ?></option>
+                            <?php    
 
+                                }
+                                }
+                                else{
+                                echo"Project Name is not defined in the database";
+                                }
+                             ?>            
+                        </select>
+                        <button type="button" class="btn_new_task" onclick="addnewProject();"><i class="fa fa-plus"></i></button>
+                    </div>
+                   
+                    <div class="newProject" id="newProject" style="display: none">
+                        <input 
+                        type="text"
+                        class="txt_model" 
+                        name="txt_project_name"
+                        id="txt_project_name"
+                        placeholder="New Project Name.."
+                        maxlength="50"
+                        >
+                        <button name="btn-add-project" class="btnAddProject"><i class="fa  fa-check"></i></button>
+                        <button type="button"  class ="btnAddPclose" onclick="newProjectHide();" ><i class="fa fa-close"></i></button>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-lg-6">
+                    <div class="form-group">
+                        <label for="projectModule" class="text_header">Module Name :</label>
+                        <select name="moduleName" id="moduleName" class="sel_project">
+                            <?php
+                            // get module name from the database
+                            $modquery = "SELECT * FROM `pgm_module` ORDER BY `pgm_module`.`st_date` DESC";
+                            $modrun = mysqli_query($con, $modquery) or die("Database Error". mysqli_error($con));
+                            // check data is found or not 
+                            if(mysqli_num_rows($modrun) > 0){
+                                while($data = mysqli_fetch_assoc($modrun)){ ?>
+                            <option value="<?php echo $data['module_name'] ?>"><?php echo $data['module_name'] ?></option>
+                            <?php    
 
-        <div class="row third_row">
-           <div class="planned_task">
-               <div class="form-group">
-                   <i class="fa fa-calendar fa-2x"></i>&nbsp;
-                   <input type="date" name="palanned_date" id="planned_date">&nbsp;
-                   <label for="plannedTask">Planned Task </label>
+                                }
+                                }
+                                else{
+                                echo"Module Name is not defined in the database";
+                                }
+                             ?>    
+                        </select>
+                        <button type="button" class="btn_new_task" onclick="addnewModule();"><i class="fa fa-plus"></i></button>
+                    </div>
+                    <div class="newModule" id="newModule"style="display:none" >
+                        <input 
+                        type="text"
+                        class="txt_model" 
+                        placeholder="New Module Name.."
+                        name="txt_module_name"
+                        id="txt_module_name"
+                        >
+                        <button name = "btn_add_module" class="btnAddProject"><i class="fa fa-check"></i></button>
+                        <button type="button" class="btnAddPclose" onclick="newModuleHide();"><i class="fa fa-close"></i></button>
+                    </div>
+                </div> 
 
-               </div>
-           </div>
-           <div class="col-sm-12 col-md-12 col-lg-12 nec_scroll">
+            </div> <!-- end of first-row-->
+            <hr class="body_row">
+            <!-- end of project name and module section -->
+
+            <!-- planned task section -->
+            <div class="row third_row">
+                <div class="planned_task">
+                    <div class="form-group">
+                        <i class="fa fa-calendar fa-2x"></i>&nbsp;
+                        <input type="date" name="palanned_date" id="planned_date">&nbsp;
+                        <label for="plannedTask">Planned Task </label>
+
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12 nec_scroll">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                <th>Task List :</th>
+                                
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="checkbox">
+                                            <label><input type="checkbox" value="">The printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</label>
+                                        </div>
+                                    </td>
+                                    <td><a href="#" ><i class="fa fa-pencil-square" id="btni_edit"></i></a></td>
+                                    <td><a href="#" ><i class="fa fa-check-circle" id="btni_success"></i></a></td>
+                                    <td><a href="#" ><i class="fa fa-close" id="btni_delete"></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="checkbox">
+                                            <label><input type="checkbox" value="">The printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</label>
+                                        </div>
+                                    </td>
+                                    <td><a href="#" ><i class="fa fa-pencil-square" id="btni_edit"></i></a></td>
+                                    <td><a href="#" ><i class="fa fa-check-circle" id="btni_success"></i></a></td>
+                                    <td><a href="#" ><i class="fa fa-close" id="btni_delete"></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="checkbox">
+                                            <label><input type="checkbox" value="">The printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</label>
+                                        </div>
+                                    </td>
+                                    <td><a href="#" ><i class="fa fa-pencil-square" id="btni_edit"></i></a></td>
+                                    <td><a href="#" ><i class="fa fa-check-circle" id="btni_success"></i></a></td>
+                                    <td><a href="#" ><i class="fa fa-close" id="btni_delete"></i></a></td>
+                                </tr>       
+                            </tbody>
+                        </table>
+            
+            
+                </div>
+            </div> <!-- end of third row-->
+            <!-- end of planned task section -->
+
+            <!-- actual task section -->
+            <div class="row fourth_row">
+                <div class="actual_task">
+                    <div class="form-group">
+                        <i class="fa fa-calendar fa-2x"></i>&nbsp;
+                        <input type="date" name="actual_date" id="actual_date">&nbsp;
+                        <label for="actualTask">Actual Task</label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12 nec_scroll">
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
@@ -151,11 +248,12 @@ require_once('./inc/session.php');
                         <tr>
                             <td>
                                 <div class="checkbox">
-                                    <label><input type="checkbox" value="">The printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</label>
+                                    <label><input type="checkbox" value="" class="checkbox-primary">The printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</label>
                                 </div>
                             </td>
                             <td><a href="#" ><i class="fa fa-pencil-square" id="btni_edit"></i></a></td>
                             <td><a href="#" ><i class="fa fa-check-circle" id="btni_success"></i></a></td>
+                            <td><a href="#" data-toggle="modal" data-target="#myCommentModel" ><i class="fa  fa-commenting" id="btni_comment"></i></a></td>
                             <td><a href="#" ><i class="fa fa-close" id="btni_delete"></i></a></td>
                         </tr>
                         <tr>
@@ -166,6 +264,7 @@ require_once('./inc/session.php');
                             </td>
                             <td><a href="#" ><i class="fa fa-pencil-square" id="btni_edit"></i></a></td>
                             <td><a href="#" ><i class="fa fa-check-circle" id="btni_success"></i></a></td>
+                            <td><a href="#" data-toggle="modal" data-target="#myCommentModel" ><i class="fa  fa-commenting" id="btni_comment"></i></a></td>
                             <td><a href="#" ><i class="fa fa-close" id="btni_delete"></i></a></td>
                         </tr>
                         <tr>
@@ -176,126 +275,69 @@ require_once('./inc/session.php');
                             </td>
                             <td><a href="#" ><i class="fa fa-pencil-square" id="btni_edit"></i></a></td>
                             <td><a href="#" ><i class="fa fa-check-circle" id="btni_success"></i></a></td>
+                            <td><a href="#" data-toggle="modal" data-target="#myCommentModel" ><i class="fa  fa-commenting" id="btni_comment"></i></a></td>
                             <td><a href="#" ><i class="fa fa-close" id="btni_delete"></i></a></td>
                         </tr>       
                     </tbody>
                 </table>
-    
-    
-           </div>
-        </div> <!-- end of third row-->
-
-        <div class="row fourth_row">
-            <div class="actual_task">
-                <div class="form-group">
-                    <i class="fa fa-calendar fa-2x"></i>&nbsp;
-                    <input type="date" name="actual_date" id="actual_date">&nbsp;
-                    <label for="actualTask">Actual Task</label>
+                <div class="add_actual_task">
+                    <a onclick="addTaskSection();"><h5 class="addactTaskLabel">Add an Item...</h5></a>
                 </div>
-            </div>
-            <div class="col-sm-12 col-md-12 col-lg-12 nec_scroll">
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                    <th>Task List :</th>
-                    
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <div class="checkbox">
-                                <label><input type="checkbox" value="" class="checkbox-primary">The printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</label>
-                            </div>
-                        </td>
-                        <td><a href="#" ><i class="fa fa-pencil-square" id="btni_edit"></i></a></td>
-                        <td><a href="#" ><i class="fa fa-check-circle" id="btni_success"></i></a></td>
-                        <td><a href="#" data-toggle="modal" data-target="#myCommentModel" ><i class="fa  fa-commenting" id="btni_comment"></i></a></td>
-                        <td><a href="#" ><i class="fa fa-close" id="btni_delete"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="checkbox">
-                                <label><input type="checkbox" value="">The printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</label>
-                            </div>
-                        </td>
-                        <td><a href="#" ><i class="fa fa-pencil-square" id="btni_edit"></i></a></td>
-                        <td><a href="#" ><i class="fa fa-check-circle" id="btni_success"></i></a></td>
-                        <td><a href="#" data-toggle="modal" data-target="#myCommentModel" ><i class="fa  fa-commenting" id="btni_comment"></i></a></td>
-                        <td><a href="#" ><i class="fa fa-close" id="btni_delete"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="checkbox">
-                                <label><input type="checkbox" value="">The printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</label>
-                            </div>
-                        </td>
-                        <td><a href="#" ><i class="fa fa-pencil-square" id="btni_edit"></i></a></td>
-                        <td><a href="#" ><i class="fa fa-check-circle" id="btni_success"></i></a></td>
-                        <td><a href="#" data-toggle="modal" data-target="#myCommentModel" ><i class="fa  fa-commenting" id="btni_comment"></i></a></td>
-                        <td><a href="#" ><i class="fa fa-close" id="btni_delete"></i></a></td>
-                    </tr>       
-                </tbody>
-            </table>
-            <div class="add_actual_task">
-                <a onclick="addTaskSection();"><h5 class="addactTaskLabel">Add an Item...</h5></a>
-            </div>
-            <div class="testcontainer col-md-6 col-sm-8 col-lg-6 col-xs-12" id="testcontainer" style="display:none">
-                <form action="">
-                    <textarea name="userActualTask" id="userActualTask" cols="10" rows="0" class="form-control"placeholder="Add an Item.."></textarea><br>
-                    <button class="btn btn-success btnaddact ">Add</button>
-                    <button class="btnaddactclose" onclick="btn_div_hide();"><i class="fa fa-close"></i></button>
-                    
-                </form>
-            </div>
-            </div>
-        </div> <!-- end of fourth row-->
-
-        <div class="row fifth_row">
-            <div class="next_week_task">
-                <div class="form-group">
-                    <i class="fa fa-calendar fa-2x"></i>&nbsp;
-                    <input type="date" name="next_week_date" id="next_week_date">&nbsp;
-                    <label for="nextWeekTask">Next Week Plan</label>
+                <div class="testcontainer col-md-6 col-sm-8 col-lg-6 col-xs-12" id="testcontainer" style="display:none">
+                       <textarea name="userActualTask" id="userActualTask" cols="10" rows="0" class="form-control"placeholder="Add an Item.."></textarea><br>
+                        <button class="btn btn-success btnaddact">Add</button>
+                        <button type="button" class="btnaddactclose" onclick="btn_div_hide();"><i class="fa fa-close"></i></button>
+                  
                 </div>
-            </div>
-            <div class="col-sm-12 col-md-12 col-lg-12 nec_scroll">
-                <table class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                        <th>Added Task :</th>
+                </div>
+            </div> <!-- end of fourth row-->
+            <!-- end of actual task section -->
+
+            <!-- next week plan section -->
+            <div class="row fifth_row">
+                <div class="next_week_task">
+                    <div class="form-group">
+                        <i class="fa fa-calendar fa-2x"></i>&nbsp;
+                        <input type="date" name="next_week_date" id="next_week_date" value="2013-01-08">&nbsp;
+                        <label for="nextWeekTask">Next Week Plan</label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12 nec_scroll">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                            <th>Added Task :</th>
+                            
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" value="">The printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</label>
+                                    </div>
+                                </td>
+                                <td><a href="#" ><i class="fa fa-pencil-square" id="btni_edit"></i></a></td>
+                                <td><a href="#" ><i class="fa fa-close" id="btni_delete"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- add new task section -->
+                    <div class="add_new_task">
+                    <a onclick="addNewTask();"><h5 class="nextWeekPlane">Add an Item...</h5></a>
                         
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value="">The printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</label>
-                                </div>
-                            </td>
-                            <td><a href="#" ><i class="fa fa-pencil-square" id="btni_edit"></i></a></td>
-                            <td><a href="#" ><i class="fa fa-close" id="btni_delete"></i></a></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <!-- add new task section -->
-                <div class="add_new_task">
-                  <a onclick="addNewTask();"><h5 class="nextWeekPlane">Add an Item...</h5></a>
-                    
-                </div>
-                <div class="newTask col-md-6 col-sm-8 col-lg-6 col-xs-12" id="newTask" style="display:none">
-                    <form name="newTask" id="newTask" action="newtask.php" method="post">
+                    </div>
+                    <div class="newTask col-md-6 col-sm-8 col-lg-6 col-xs-12" id="newTask" style="display:none">
                         <textarea name="userNewTask" id="userNewTask" cols="10" rows="3" class="form-control" placeholder="Add new Item"></textarea><br>
                         <button class="btnNewTask" name="btn_new_task" id="btn_new_task">Add</button>
-                        <button class="btnaddactclose" onclick="hideNewTask();" ><i class="fa fa-close"></i></button>
-                        
-                    </form>
+                        <button type="button" class="btnaddactclose" onclick="hideNewTask();" ><i class="fa fa-close"></i></button>
+                            
+                    </div>
+                    <!-- end of add new task section  -->
                 </div>
-                <!-- end of add new task section  -->
-            </div>
-        </div> <!-- end of fifth row-->
-
+            </div> <!-- end of fifth row-->
+            <!-- end of next week plan section -->
+        </form>
     </div> <!-- end of container-->
     <!-- end of taskbody-section -->
 
@@ -354,6 +396,7 @@ require_once('./inc/session.php');
     function newProjectHide(){
         var newproject = document.getElementById("newProject");
         newproject.style.display = "none"
+        
     }
     function addnewModule(){
         var newmodule = document.getElementById("newModule");
