@@ -61,8 +61,29 @@ require_once('./inc/session.php');
         // grab the form data
         $projectName = $_POST['projectName'];
         $moduleName = $_POST['moduleName'];
-        $day = date("l");
-        echo $day;
+        $task_date = date('Y-m-d');
+        $task_descp = $_POST['userNewTask'];
+        $email_id = $session_id;
+        $flag = "p";
+        // check if task field is empty
+        if(!empty($task_descp)){
+            // do stuff to save in the database
+            $taskquery = "INSERT INTO `pgm_task` (`task_id`, `emp_id`, `emp_email`, `project_name`, `module_name`, `task_details`, `comment`, `date`, `flag`) VALUES (NULL, '', '$email_id', '$projectName', '$moduleName', '$task_descp', '', '$task_date', '$flag')";
+            $taskrun = mysqli_query($con, $taskquery) or die("Database Error".mysqli_error($con));
+            if($taskrun){
+                echo '<script language="javascript">';
+                echo 'alert("Added New task");';
+                echo 'window.location.href = "userdash.php";';
+                echo '</script>';
+            }
+
+        }else{
+            echo '<script language="javascript">';
+            echo 'alert("Task details shouldnot be empty");';
+            echo 'window.location.href = "userdash.php";';
+            echo '</script>';
+        }
+        
     }
 // end of new task query
 
